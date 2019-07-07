@@ -5,15 +5,15 @@
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
             </li>
+            {% if request.path == '/' %}
+              <li class=""><a href="{% url 'account_login' %}" class="btn btn-outline-success px-3">Login</a></li>
+            {% else %}
+              <li class=""><a href="{% url 'account_signup' %}" class="btn btn-outline-success px-3">Sign Up</a></li>
+            {% endif %}
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2 login-form btn-outline-light" placeholder="email" type="email">
-            <input class="form-control mr-sm-2 login-form btn-outline-light" type="password" placeholder="password">
-            <button class="btn btn-outline-light my-2 my-sm-0 login-form" type="submit">Login</button>
-          </form>
     </div>
 </nav>

@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
 from django.conf import settings
+from django.contrib.auth.models import User
 
 """
     This is the module for storing information about the university
@@ -46,7 +47,7 @@ class Collage(models.Model):
         return reverse('collage_detail', args=[self.slug, self.id])
 
 class Program(models.Model):
-    collage = models.ForeignKey(Collage, on_delete=models.CASCADE)
+    collage         = models.ForeignKey(Collage, on_delete=models.CASCADE)
     name            = models.CharField(max_length=50, null=False, blank=False, unique=True)
     abbreviation    = models.CharField(max_length=10, null=False, blank=False)
     description     = models.TextField()

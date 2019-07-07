@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="ml-3">
+    <div class="row">
+        <div class="col-md-2 p-0 m-0">
+            <div class="card" style="">
+                <img class="card-img-top" src="{% static 'img/default_user.jpg' %}" alt="{{ request.user }}">
+                <div class="card-body">
+                    <h4 class="card-title">{{ request.user.get_full_name }}</h4>
+                    <ul class="list-unstyled p-0 m-0">
+                        <li class="">{{ request.user.username }}</li>
+                        <li class="">{{ request.user.university }} University </li>
+                        <li class="">Program</li>
+                        <li class="">Year 3</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Side nav -->
+            <div class="list-group mt-2">
+                <a href="#" class="list-group-item list-group-item-action">Courses</a>
+                <a href="#" class="list-group-item list-group-item-action">Books</a>
+                <a href="#" class="list-group-item list-group-item-action">Past Papers</a>
+                <a href="#" class="list-group-item list-group-item-action">Projects</a>
+                <a href="#" class="list-group-item list-group-item-action">Lecture Notes</a>
+                <a href="#" class="list-group-item list-group-item-action">Donate</a>
+            </div>
+        </div>
+            
+        <div class="col-md-7" style="height: 700px;">
+            {% block locallib_content %}
+            {% endblock %}
+        </div>
+            
+        <div class="col-md-3">
+            {% for book in books %}
+            <div class="media border px-1 m-0 mb-2">
+                <img src="{% static 'img/default_user.jpg' %}" alt="John Doe" class="m-2 circular-image " style="width:60px;">
+            <div class="media-body p-3">
+                <h6>{{ book.contributor }}<small class="px-2"><i>{{ book.uploaded }}</i></small></h6>
+                <p>Added a new Document {{ book.title }}</p>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>       
+</div>
+{% endblock %}

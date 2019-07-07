@@ -32,4 +32,6 @@ urlpatterns = [
         name="account_reset_password_from_key"),
     url(r"^password/reset/key/done/$", allauth_views.password_reset_from_key_done,
         name="account_reset_password_from_key_done"),
+    
+    path('student/', include("student.urls"))
 ]

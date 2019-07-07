@@ -29,7 +29,7 @@ class BookRequest(models.Model):
         if self.upload_times >= 5:
             self.uploaded = True
         
-        return super(DocumentRequest, self).save(*args, **kwargs)
+        return super(BookRequest, self).save(*args, **kwargs)
     
     def get_absolute_url(self):
         return reverse('request_detail_doc_upload', args=[self.slug, self.id])
@@ -45,7 +45,7 @@ class Book(models.Model):
     descriptions        = models.TextField()
     downloads           = models.PositiveIntegerField(default=0)
     views               = models.PositiveIntegerField(default=0)
-    book_request    = models.ForeignKey(BookRequest, on_delete=models.SET_NULL, null=True)
+    book_request    = models.ForeignKey(BookRequest, on_delete=models.SET_NULL, null=True, blank=True)
     program             = models.ForeignKey(Program, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -56,7 +56,7 @@ class Book(models.Model):
             self.slug = slugify(self.title, self.id)
         if not self.extention:
             self.extention = str(self.file).rsplit('.', 1)[1].lower()
-        return super(Document, self).save(*args, **kwargs)
+        return super(Book, self).save(*args, **kwargs)
     
     def get_absolute_url(self):
         return reverse('document', args=[self.slug, self.pk])
